@@ -1,0 +1,197 @@
+<?php
+    require('../conexion.php');
+    session_start();
+    if(!isset($_SESSION["idUsuario"])){
+        header("Location: ../welcome.php");
+    }
+    if($_SESSION['tipoUsuario']=="Alumno") {
+		header("location: ../welcome.php");
+    }
+    if($_SESSION['tipoUsuario']=="Docente") {
+		header("location: ../welcome.php");
+    }
+    $idUsuario = $_SESSION['idUsuario'];
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shorcut icon" href="img/Logo.png">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Usuarios | RepositorioUTCGG</title>
+    <!-- SCRIPTS -->
+    <script src="../../js/jquery.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <link rel="stylesheet" href="../../css/bootstrap4.3.css">
+    <script src="../../js/popper.js"></script>
+    <script src="../../js/bootstrap4.3.js"></script>   
+</head>
+<body>
+
+    <!-- INCLUSION DE NAVBAR -->
+    <?php include('../navbar.html')?>
+    <!-- FIN INCLUSION NAVBAR -->
+
+    <!-- BOOTSTRAP ROW -->
+    <div class="row" id="body-row">
+        <!-- INICIO SIDEBAR -->
+        <?php include('../sidebar.php') ?>
+        <!-- sidebar-container END -->
+
+        <!-- SECCION MAIN -->
+        <div class="col mt-5">
+            <h1 class="text-center">
+                
+            </h1>
+            <!-- CARD-->
+            <div class="card">
+                <h4 class="card-header text-center">Registro de Administradores</h4>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="table-responsive">
+                            <div align="right">
+                                <button type="button" name="add" id="add" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-success">Agregar</button> 
+                                <br>
+                                <br> 
+                            </div>
+                            
+                            <div class="col-md-12" style="width:100%; height:190px; overflow: scroll; overflow-x:hidden;">
+                                <h3>Filtrar por Carrera</h3>
+                                <?php
+
+                                    $query = "SELECT DISTINCT * FROM carrera  ORDER BY idCarrera ASC
+                                    ";
+                                    $statement = $pdo->prepare($query);
+                                    $statement->execute();
+                                    $result = $statement->fetchAll();
+                                    foreach($result as $row)
+                                    {
+                                    ?>
+                                    <div class="list-group-item checkbox" >
+                                        <label><input type="checkbox" class="common_selector carrera" value="<?php echo $row['idCarrera']; ?>" > <?php echo $row['carrera']; ?></label>
+                                    </div>
+                                <?php    
+                                }
+
+                                ?>
+                            </div>
+                            <br>
+                            <div class="filter_data"></div>
+                            <div id="docentes_table">
+                                
+                            </div>
+                        </div> <!--END TABLE RESPONSIVE-->
+                    </div> <!--END ROW-->
+                </div> <!-- END CARD BODY -->
+            </div> <!-- END CARD -->
+          </div><!-- Main Col END -->
+    </div> 
+    <!-- BODY ROW END -->
+    <link rel="stylesheet" href="css/sidebar.css">
+    <script src="js/sidebar.js"></script>
+    <script src="js/mainUsuarios.js"></script>
+    <script src="js/sweetalert.js"></script>
+</body>
+</html>
+
+
+
+
+<!-- ===========================================================================================================
+                                        AGREGAR Y ACTUALIZAR
+=========================================================================================================== -->
+<div id="add_data_Modal" class="modal fade">  
+      <div class="modal-dialog modal-lg">  
+           <div class="modal-content">  
+                <div class="modal-header">  
+                    <h4 class="modal-title">Nuevo Administrador</h4>  
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>       
+                </div>  
+                <div class="modal-body">  
+                     <form method="post" id="insert_form">  
+                            <label>Nombre(s)</label>  
+                            <input type="text" name="administrador" id="administrador" class="form-control" placeholder="Nombre(s)"/>  
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="text-center" for="">Apellido Paterno</label>
+                                    <input type="text" name="app" id="app" class="form-control" placeholder="Apellido Paterno">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="text-center" for="">Apellido Materno</label>
+                                    <input type="text" name="apm" id="apm" class="form-control" placeholder="Apellido Materno">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="text-center" for="">Usuario</label>
+                                    <input type="text" name="user" id="user" class="form-control" placeholder="Usuario">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="text-center" for="">Password</label>
+                                    <input type="password" name="pass" id="pass" class="form-control" placeholder="Password">
+                                </div>
+                            </div>
+                            <label>Area</label>
+                            <select name="carrera" id="carrera" class="form-control carrera">
+                                <option value="">Selecciona una carrera</option>
+                                <?php
+                                    $query = $pdo->prepare("SELECT * FROM carrera");
+                                    $query->execute();
+                                    while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                                ?>   
+                                    <option value="<?php echo $row['idCarrera']?>"><?php echo utf8_encode($row['carrera'])?></option>  
+                                <?php } ?>
+                            </select>
+                        
+                            <input type="hidden" name="administrador_id" id="administrador_id">
+                </div>  
+                <div class="modal-footer">  
+                    <input type="submit" name="insert" id="insert" value="Insertar" class="btn btn-success" />  
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+                        </form>
+                </div>   
+           </div>  
+      </div>  
+</div>  
+
+<style>
+    #loading
+    {
+        text-align:center; 
+        background: url('loader.gif') no-repeat center; 
+        height: 150px;
+    }
+</style>
+
+
+ <script>
+    $(document).ready(function(){
+        filter_data();
+        function filter_data(){
+            $('.filter_data').html('<div id="loading" style="" ></div>');
+            var action = 'fetchUsuario';
+            var carrera = get_filter('carrera');
+            $.ajax({
+                url:"app/fetchUsuario.php",
+                method:"POST",
+                data:{action:action, carrera:carrera},
+                success:function(data){
+                    $('.filter_data').html(data);
+                    //$('#docentes_table').html(data);
+                }
+            });
+        }
+        function get_filter(class_name)
+        {
+            var filter = [];
+            $('.'+class_name+':checked').each(function(){
+                filter.push($(this).val());
+            });
+            return filter;
+        }
+        $('.common_selector').click(function(){
+            filter_data();
+        });
+    });
+ </script>

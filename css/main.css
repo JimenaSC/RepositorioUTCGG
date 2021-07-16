@@ -1,0 +1,49 @@
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body{
+	background-image: url('../img/showcase.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Numans', sans-serif;
+}
+.user-img{
+    margin-top: -50px;
+    margin-bottom: 35px;
+}
+.user-img img{
+    width: 200px;
+    height: 200px;
+}
+.modal-content{
+    background-color: rgba(0,0,0,0.5) !important;
+    box-shadow: 0 0 5px 5px #595a578e;
+}
+.main{
+    text-align: center;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 25%;
+    padding: 0;
+}
+
+.error{
+    position: relative;
+    background-color: rgb(255, 0, 0,0.5);
+    padding: 10px 0 ;
+    border-radius:  0 0 5px 5px;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    text-align: center;
+    z-index: 1;
+    display: none;
+}
+
+@media (max-width: 600px) {
+
+    body{
+        background-image: url('../img/showcase-movil.jpg');
+        background-size: cover;
+    }
+  }
+

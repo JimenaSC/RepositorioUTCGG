@@ -1,0 +1,100 @@
+
+<!-- INICIO SIDEBAR -->
+<div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    
+        <!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
+        <!-- Bootstrap List Group -->
+        <ul class="list-group sticky-top sticky-offset">
+
+            <!-- Separator with title -->
+            <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                <small> </small>
+            </li>
+            <!-- /END Separator -->
+
+            <!-- MENU Y SUBMENU #1 -->
+            <!-- Menu with submenu -->
+
+            <a href="../welcome.php" class="bg-dark list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <i class="fas fa-tachometer-alt mr-3"></i>
+                    <span class="menu-collapsed">Inicio</span>
+                </div>
+            </a>
+
+
+            <!-- MENU Y SUBMENU #2 -->
+            <a href="alumnos.php" class="bg-dark list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <i class="fas fa-user-graduate mr-3"></i>
+                    <span class="menu-collapsed">Alumnos</span>
+                </div>
+            </a>
+
+            <!-- Submenu content -->
+            
+
+
+            
+            <!-- SECCION 2 MENU -->
+            <!-- Separator with title -->
+            <!--<li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                <small>OPTIONS</small>
+            </li>-->
+            <!-- /END Separator -->
+            <a href="registroRepositorio.php" class="bg-dark list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <i class="fas fa-folder mr-3"></i>
+                    <span class="menu-collapsed">Registro repositorios</span>
+                </div>
+            </a>
+            <!-- /END Separator -->
+            <a href="versionRepositorio.php" class="bg-dark list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <i class="fas fa-folder-open mr-3"></i>
+                    <span class="menu-collapsed">Versión repositorios</span>
+                </div>
+            </a>
+
+            <!-- SECCION #3 -->
+            <!-- Separator without title -->
+            <li class="list-group-item sidebar-separator menu-collapsed"></li>            
+            <!-- /END Separator -->
+            <!-- MENU Y SUBMENU #2 -->
+            <a href="#submenu4" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <i class="fas fa-hands-helping mr-3"></i>
+                    <span class="menu-collapsed">Manuales</span>
+                    <span class="submenu-icon ml-auto"></span>
+                </div>
+            </a>
+
+            <!--REALIZAR LOS MANUALES DE USUARIO-->
+            <!-- Submenu content -->
+            <div id='submenu4' class="collapse sidebar-submenu">
+                <a href="../docs/manual de usuario SCV.pdf" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">Manual de Usuario</span>
+                </a>
+            </div>
+            <!-- Submenu content -->
+            <div id='submenu4' class="collapse sidebar-submenu">
+                <a href="../docs/SCV  manual tecnico_impri.pdf" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">Manual Técnico</span>
+                </a>
+            </div>
+
+            <!--
+                <a href="#" data-toggle="sidebar-colapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span id="collapse-icon" class="fa fa-2x mr-3"></span>
+                        <span id="collapse-text" class="menu-collapsed">Hide</span>
+                    </div>
+                </a>
+            -->
+            
+            <!-- Logo -->
+            
+        </ul><!-- List Group END-->
+    </div>
+    <!-- sidebar-container END -->
